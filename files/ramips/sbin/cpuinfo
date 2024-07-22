@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cpu_arch="$(ubus call system board | awk -F'"' '/"system"/{split($4,a,","); print a[1]}')"
+[ -z "${cpu_arch}" ] && cpu_arch="MediaTek MT7621"
+cpu_cores="$(cat "/proc/cpuinfo" | grep "processor" | wc -l)"
+
+if grep -q "ramips" "/etc/openwrt_release"; then
+	sys_temp="$(awk '{ printf("%.1f°C ", $0 / 1000) }' /sys/class/hwmon/hwmon1/temp1_input)"
+	echo -n "${cpu_arch} x ${cpu_cores} ( ${sys_temp})"
+fi
+
