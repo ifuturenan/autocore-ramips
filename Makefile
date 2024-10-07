@@ -17,11 +17,11 @@ include $(INCLUDE_DIR)/target.mk
 define Package/autocore-ramips
   TITLE:=Ramips auto core loadbalance script.
   MAINTAINER:=ifuturenan
-  DEPENDS:=@(TARGET_ramips)
+  DEPENDS:=@(TARGET_ramips_mt7621)
 endef
 
 define Package/autocore-ramips/description
-  A luci autoconfig hotplug script.
+  A luci autoconfig hotplug script for mediatek MT7621.
 endef
 
 define Build/Compile
